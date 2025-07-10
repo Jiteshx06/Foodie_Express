@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Special Offers | FoodieExpress</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --primary-dark: #e05a2b;
+      --accent: #ffd166;
+      --accent-dark: #ffc044;
+      --saffron: #FF9933;
+      --green: #138808;
+      --dark: #1a1a1a;
+      --darker: #111;
+      --light: #f8f9fa;
+      --light-alt: #e9ecef;
+      --glass: rgba(255, 255, 255, 0.08);
+      --blur: blur(15px);
+      --radius: 16px;
+      --gradient: linear-gradient(135deg, var(--primary), #ffb347);
+      --gradient-alt: linear-gradient(135deg, var(--accent), #ffb347);
+      --shadow: 0 12px 30px rgba(0,0,0,0.3);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Outfit', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 10% 20%, rgba(26, 26, 26, 0.8) 0%, rgba(17, 17, 17, 1) 90%);
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .section-title h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: var(--gradient-alt);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient);
+      border-radius: 10px;
+      border: 2px solid var(--dark);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: var(--blur);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      padding: 0.8rem 2rem;
+      transition: var(--transition);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.8rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand i {
+      margin-right: 8px;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      color: var(--light) !important;
+      font-weight: 500;
+      margin: 0 0.8rem;
+      position: relative;
+      transition: var(--transition);
+      padding: 0.5rem 1rem !important;
+      font-size: 1.05rem;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-primary:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .btn-primary:hover:before {
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+    }
+
+    /* Hero Section */
+    .hero-offers {
+      height: 60vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+        url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    .hero-offers::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 20%, var(--darker) 150%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 2rem;
+    }
+
+    .hero-offers h1 {
+      font-size: 4.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffd166, #ff9933);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: float 5s ease-in-out infinite;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Offers Section */
+    .offers-container {
+      background: linear-gradient(to bottom, var(--dark), var(--darker));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .offers-container::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .offers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+
+    .offer-card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+      transform-style: preserve-3d;
+      perspective: 1000px;
+    }
+
+    .offer-card:hover {
+      transform: translateY(-15px) rotateY(5deg);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+      border-color: rgba(255,255,255,0.15);
+    }
+
+    .offer-badge {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: var(--gradient);
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      z-index: 2;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      animation: pulse 2s infinite;
+    }
+
+    .offer-img {
+      height: 250px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .offer-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .offer-card:hover .offer-img img {
+      transform: scale(1.1);
+    }
+
+    .offer-content {
+      padding: 2rem;
+    }
+
+    .offer-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      position: relative;
+      display: inline-block;
+    }
+
+    .offer-title:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+
+    .offer-description {
+      color: var(--light-alt);
+      margin-bottom: 1.5rem;
+      font-size: 1.05rem;
+    }
+
+    .offer-details {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+
+    .original-price {
+      text-decoration: line-through;
+      color: var(--light-alt);
+      font-size: 1.2rem;
+    }
+
+    .discounted-price {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--accent);
+    }
+
+    .countdown {
+      display: flex;
+      gap: 10px;
+      margin: 1.5rem 0;
+      justify-content: center;
+    }
+
+    .countdown-item {
+      background: var(--glass);
+      padding: 1rem;
+      border-radius: 10px;
+      text-align: center;
+      min-width: 70px;
+      border: 1px solid rgba(255,255,255,0.1);
+      animation: glow 2s infinite alternate;
+    }
+
+    .countdown-value {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .countdown-label {
+      font-size: 0.9rem;
+      color: var(--light-alt);
+      text-transform: uppercase;
+    }
+
+    .offer-cta {
+      display: flex;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    /* Features Section */
+    .features {
+      background: linear-gradient(to bottom, var(--darker), var(--dark));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .features::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,209,102,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .feature-card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      backdrop-filter: var(--blur);
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .feature-card h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0,0,0,0.92);
+      padding: 4rem 0 2rem;
+      backdrop-filter: var(--blur);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1.8rem;
+      color: var(--accent);
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--light-alt);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a i {
+      width: 25px;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-icon:hover {
+      background: var(--gradient);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2.5rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--light-alt);
+      font-size: 0.95rem;
+    }
+
+    /* Floating Cart */
+    .cart-floating {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--gradient);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+      font-size: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    .cart-floating:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 20px 50px rgba(255, 107, 53, 0.6);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--light);
+      color: var(--primary);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Custom Message Box */
+    .custom-message-box {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .custom-message-box.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .custom-message-box .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(255, 209, 102, 0.5); }
+      100% { box-shadow: 0 0 20px rgba(255, 209, 102, 0.8); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .hero-offers h1 { font-size: 3.8rem; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-offers h1 { font-size: 3.2rem; }
+      section { padding: 4rem 0; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-offers h1 { font-size: 2.7rem; }
+      .section-title h2 { font-size: 2.2rem; }
+      .navbar { padding: 0.7rem 1.5rem; }
+      .offers-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 576px) {
+      .hero-offers h1 { font-size: 2.2rem; }
+      .section-title h2 { font-size: 1.9rem; }
+      .navbar-brand { font-size: 1.5rem; }
+      .countdown { flex-wrap: wrap; }
+      .countdown-item { min-width: 60px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> FoodieExpress</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="offers.html">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about-us.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 my-2 my-lg-0">
+            <a class="btn btn-primary" href="#">Login <i class="fas fa-sign-in-alt ms-2"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-offers">
+    <div class="hero-content">
+      <h1 data-aos="fade-up" data-aos-delay="100">Exclusive Food Offers</h1>
+      <p data-aos="fade-up" data-aos-delay="200" class="lead">Savor the savings with our irresistible deals on authentic Indian cuisine</p>
+    </div>
+  </section>
+
+  <!-- Offers Section -->
+  <section class="offers-container">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Special Offers & Deals</h2>
+        <p class="text-light-alt">Limited time offers - Don't miss out!</p>
+      </div>
+
+      <div class="countdown" data-aos="fade-up" data-aos-delay="100">
+        <div class="countdown-item">
+          <div class="countdown-value" id="days">03</div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="hours">12</div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="minutes">45</div>
+          <div class="countdown-label">Mins</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="seconds">30</div>
+          <div class="countdown-label">Secs</div>
+        </div>
+      </div>
+
+      <div class="offers-grid">
+        <!-- Offer 1 -->
+        <div class="offer-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="offer-badge">40% OFF</div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Combo Offer">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">Family Feast Combo</h3>
+            <p class="offer-description">Enjoy our signature dishes with this exclusive family combo. Perfect for 4 people with a selection of curries, biryani, naan, and dessert.</p>
+            <div class="offer-details">
+              <div>
+                <span class="original-price">₹1,299</span>
+                <div class="discounted-price">₹799</div>
+              </div>
+              <button class="btn btn-primary">Grab Offer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer 2 -->
+        <div class="offer-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="offer-badge">FREE DESSERT</div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=781&q=80" alt="Dessert Offer">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">Weekend Sweet Treat</h3>
+            <p class="offer-description">Order any main course this weekend and get a free Gulab Jamun dessert. The perfect sweet ending to your meal!</p>
+            <div class="offer-details">
+              <div>
+                <span class="original-price">₹199</span>
+                <div class="discounted-price">FREE</div>
+              </div>
+              <button class="btn btn-primary">Grab Offer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer 3 -->
+        <div class="offer-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="offer-badge">BUY 1 GET 1</div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1606491956689-2ea866880c84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1921&q=80" alt="Pizza Offer">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">Pizza Mania</h3>
+            <p class="offer-description">Buy one large pizza and get one free! Choose from our delicious range of Indian-inspired pizza flavors.</p>
+            <div class="offer-details">
+              <div>
+                <span class="original-price">₹599</span>
+                <div class="discounted-price">₹599</div>
+              </div>
+              <button class="btn btn-primary">Grab Offer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer 4 -->
+        <div class="offer-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="offer-badge">30% OFF</div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1606755962773-d324e7a7a7b6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Lunch Special">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">Executive Lunch</h3>
+            <p class="offer-description">Quick, delicious lunch specials for busy weekdays. Includes main course, rice, salad, and a drink.</p>
+            <div class="offer-details">
+              <div>
+                <span class="original-price">₹349</span>
+                <div class="discounted-price">₹249</div>
+              </div>
+              <button class="btn btn-primary">Grab Offer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer 5 -->
+        <div class="offer-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="offer-badge">25% OFF</div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1606491956746-9d01e0a3fdaa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="South Indian">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">South Indian Delight</h3>
+            <p class="offer-description">Authentic South Indian thali with 2 dosas, idli, vada, sambar, and 3 chutneys. A complete meal experience.</p>
+            <div class="offer-details">
+              <div>
+                <span class="original-price">₹499</span>
+                <div class="discounted-price">₹374</div>
+              </div>
+              <button class="btn btn-primary">Grab Offer</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Offer 6 -->
+        <div class="offer-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="offer-badge">FLAT ₹200 OFF</div>
+          <div class="offer-img">
+            <img src="https://images.unsplash.com/photo-1634034379073-f689b460a3fc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" alt="Biriyani">
+          </div>
+          <div class="offer-content">
+            <h3 class="offer-title">Biriyani Bonanza</h3>
+            <p class="offer-description">Get any two biriyanis and enjoy flat ₹200 off. Choose from Hyderabadi, Lucknowi, or Kolkata styles.</p>
+            <div class="offer-details">
+              <div>
+                <span class="original-price">₹698</span>
+                <div class="discounted-price">₹498</div>
+              </div>
+              <button class="btn btn-primary">Grab Offer</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="offer-cta" data-aos="fade-up" data-aos-delay="700">
+        <button class="btn btn-primary btn-lg">View All Offers <i class="fas fa-arrow-right ms-2"></i></button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Why Choose FoodieExpress?</h2>
+        <p class="text-light-alt">Premium service with authentic flavors</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>30-Minute Delivery</h3>
+            <p>Get your food piping hot in 30 minutes or get it free. Our riders are equipped with thermal bags.</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Fresh Ingredients</h3>
+            <p>We source only the freshest ingredients daily from local markets. 100% hygienic preparation.</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-rupee-sign"></i>
+            </div>
+            <h3>Best Price Guarantee</h3>
+            <p>Find a lower price elsewhere? We'll match it and give you 20% off your next order.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h3 class="navbar-brand mb-3"><i class="fas fa-utensils"></i> FoodieExpress</h3>
+          <p class="mb-4 text-light-alt">Delivering authentic Indian cuisine to your doorstep since 2018. Quality, taste, and convenience guaranteed.</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+          <h5 class="footer-title">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Menu</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+          <h5 class="footer-title">Categories</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> North Indian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> South Indian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Mughlai</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Vegetarian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Desserts</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-4">
+          <h5 class="footer-title">Contact Us</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Food Street, Mumbai, India</a></li>
+            <li><a href="#"><i class="fas fa-phone"></i> +91 70457 14602</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> info@foodieexpress.in</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> 10:00 AM - 11:00 PM, 365 days</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 FoodieExpress. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--primary);"></i> in India</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Cart -->
+  <div class="cart-floating">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-badge">3</div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize animations
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '0.5rem 2rem';
+        navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.7)';
+      } else {
+        navbar.style.padding = '0.8rem 2rem';
+        navbar.style.boxShadow = '0 8px 25px rgba(0,0,0,0.6)';
+      }
+    });
+
+    // Countdown timer
+    function updateCountdown() {
+      const days = document.getElementById('days');
+      const hours = document.getElementById('hours');
+      const minutes = document.getElementById('minutes');
+      const seconds = document.getElementById('seconds');
+      
+      // Set the countdown date (3 days from now)
+      const countDownDate = new Date();
+      countDownDate.setDate(countDownDate.getDate() + 3);
+      
+      // Update the countdown every second
+      const x = setInterval(function() {
+        const now = new Date().getTime();
+        const distance = countDownDate - now;
+        
+        const daysValue = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hoursValue = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutesValue = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const secondsValue = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        days.innerHTML = daysValue.toString().padStart(2, '0');
+        hours.innerHTML = hoursValue.toString().padStart(2, '0');
+        minutes.innerHTML = minutesValue.toString().padStart(2, '0');
+        seconds.innerHTML = secondsValue.toString().padStart(2, '0');
+        
+        if (distance < 0) {
+          clearInterval(x);
+          document.getElementById('days').innerHTML = "00";
+          document.getElementById('hours').innerHTML = "00";
+          document.getElementById('minutes').innerHTML = "00";
+          document.getElementById('seconds').innerHTML = "00";
+        }
+      }, 1000);
+    }
+
+    // Add hover effect to offer cards
+    const offerCards = document.querySelectorAll('.offer-card');
+    offerCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-15px) rotateY(5deg)';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0) rotateY(0)';
+      });
+    });
+
+    // Initialize on page load
+    window.addEventListener('load', () => {
+      updateCountdown();
+    });
+  </script>
+</body>
+</html>

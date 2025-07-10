@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodieExpress - Premium Food Delivery in India</title>
+  
+  <!-- External Links -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --primary-dark: #e05a2b;
+      --accent: #ffd166;
+      --accent-dark: #ffc044;
+      --saffron: #FF9933;
+      --green: #138808;
+      --dark: #1a1a1a;
+      --darker: #111;
+      --light: #f8f9fa;
+      --light-alt: #e9ecef;
+      --glass: rgba(255, 255, 255, 0.08);
+      --blur: blur(15px);
+      --radius: 16px;
+      --gradient: linear-gradient(135deg, var(--primary), #ffb347);
+      --gradient-alt: linear-gradient(135deg, var(--accent), #ffb347);
+      --shadow: 0 12px 30px rgba(0,0,0,0.3);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Outfit', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 10% 20%, rgba(26, 26, 26, 0.8) 0%, rgba(17, 17, 17, 1) 90%);
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .section-title h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: var(--gradient-alt);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient);
+      border-radius: 10px;
+      border: 2px solid var(--dark);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: var(--blur);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      padding: 0.8rem 2rem;
+      transition: var(--transition);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.8rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand i {
+      margin-right: 8px;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      color: var(--light) !important;
+      font-weight: 500;
+      margin: 0 0.8rem;
+      position: relative;
+      transition: var(--transition);
+      padding: 0.5rem 1rem !important;
+      font-size: 1.05rem;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-primary:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .btn-primary:hover:before {
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+        url('https://images.unsplash.com/photo-1600891964599-f61ba0e24092?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 20%, var(--darker) 150%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 2rem;
+    }
+
+    .hero h1 {
+      font-size: 4.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffd166, #ff9933);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: float 5s ease-in-out infinite;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .hero p {
+      font-size: 1.4rem;
+      margin-bottom: 2.5rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      color: var(--light-alt);
+      font-weight: 300;
+    }
+
+    .search-container {
+      margin-top: 2.5rem;
+      position: relative;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .search-input {
+      padding: 1.3rem 2rem;
+      border-radius: 50px;
+      background: rgba(40, 40, 40, 0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: var(--blur);
+      color: var(--light);
+      width: 100%;
+      font-size: 1.1rem;
+      padding-right: 180px;
+      transition: var(--transition);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.15);
+      border-color: rgba(255,255,255,0.3);
+    }
+
+    .search-btn {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      padding: 0.9rem 2rem;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .location-tag {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 1.5rem;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    /* Categories Section */
+    .categories {
+      background: linear-gradient(to bottom, var(--dark), var(--darker));
+    }
+
+    .category-card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      text-align: center;
+      padding: 2.5rem 1.5rem;
+      backdrop-filter: var(--blur);
+      height: 100%;
+      border: 1px solid rgba(255,255,255,0.05);
+      position: relative;
+    }
+
+    .category-card:hover {
+      transform: translateY(-15px);
+      background: rgba(255, 107, 53, 0.12);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .category-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      background: var(--gradient);
+      color: white;
+      font-size: 2rem;
+      transition: var(--transition);
+      box-shadow: 0 8px 20px rgba(255, 107, 53, 0.3);
+    }
+
+    .category-card:hover .category-icon {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 12px 25px rgba(255, 107, 53, 0.5);
+    }
+
+    .category-card h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Menu Section */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .food-card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .food-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+      border-color: rgba(255,255,255,0.1);
+    }
+
+    .food-img {
+      width: 100%;
+      height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .food-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    .food-card:hover .food-img img {
+      transform: scale(1.1);
+    }
+
+    .veg-nonveg {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0,0,0,0.7);
+      font-size: 0.8rem;
+      z-index: 2;
+    }
+
+    .veg {
+      color: var(--green);
+    }
+
+    .nonveg {
+      color: var(--primary);
+    }
+
+    .food-details {
+      padding: 1.8rem;
+    }
+
+    .food-details h5 {
+      font-weight: 700;
+      font-size: 1.35rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .food-details p {
+      color: var(--light-alt);
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+      min-height: 60px;
+    }
+
+    .price-tag {
+      background: var(--gradient);
+      padding: 0.5rem 1.4rem;
+      border-radius: 50px;
+      font-weight: 700;
+      display: inline-block;
+      margin-bottom: 1.2rem;
+      color: white;
+      font-size: 1.15rem;
+      box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+    }
+
+    .food-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .rating {
+      color: var(--accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* Features Section */
+    .features {
+      background: linear-gradient(to bottom, var(--darker), var(--dark));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .features::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .features::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,209,102,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .feature-card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      backdrop-filter: var(--blur);
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      background: rgba(255,255,255,0.1);
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .feature-card h3 {
+      font-weight: 700;
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    /* Testimonials */
+    .testimonial-card {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-bottom: 2rem;
+      transition: var(--transition);
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .testimonial-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow);
+    }
+
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonial-avatar {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin-right: 1rem;
+      border: 3px solid var(--primary);
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .testimonial-info h5 {
+      font-weight: 700;
+      margin-bottom: 0.2rem;
+    }
+
+    .testimonial-info p {
+      color: var(--light-alt);
+      font-size: 0.9rem;
+    }
+
+    .testimonial-rating {
+      color: var(--accent);
+      margin-top: 0.5rem;
+    }
+
+    /* Download App */
+    .download-app {
+      background: linear-gradient(135deg, var(--dark), var(--darker));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .download-app::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,107,53,0.1) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .app-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .app-buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .app-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 1rem 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      transition: var(--transition);
+      backdrop-filter: var(--blur);
+      min-width: 220px;
+    }
+
+    .app-btn:hover {
+      background: rgba(255,255,255,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+    }
+
+    .app-btn i {
+      font-size: 2.5rem;
+      color: var(--accent);
+    }
+
+    .app-btn-text p {
+      font-size: 0.85rem;
+      color: var(--light-alt);
+      margin-bottom: 0;
+    }
+
+    .app-btn-text h5 {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 0;
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0,0,0,0.92);
+      padding: 4rem 0 2rem;
+      backdrop-filter: var(--blur);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1.8rem;
+      color: var(--accent);
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--light-alt);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a i {
+      width: 25px;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-icon:hover {
+      background: var(--gradient);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2.5rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--light-alt);
+      font-size: 0.95rem;
+    }
+
+    /* Floating Cart */
+    .cart-floating {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--gradient);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+      font-size: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    .cart-floating:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 20px 50px rgba(255, 107, 53, 0.6);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--light);
+      color: var(--primary);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Payment Methods */
+    .payment-methods {
+      display: flex;
+      gap: 15px;
+      margin-top: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .payment-method {
+      width: 50px;
+      height: 30px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+
+    /* Custom Message Box Styles */
+    .custom-message-box {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .custom-message-box.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .custom-message-box .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .hero h1 { font-size: 3.8rem; }
+    }
+
+    @media (max-width: 992px) {
+      .hero h1 { font-size: 3.2rem; }
+      section { padding: 4rem 0; }
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.7rem; }
+      .hero p { font-size: 1.2rem; }
+      .section-title h2 { font-size: 2.2rem; }
+      .navbar { padding: 0.7rem 1.5rem; }
+      .search-input { padding-right: 1.5rem; }
+      .search-btn { position: relative; margin-top: 1rem; width: 100%; }
+    }
+
+    @media (max-width: 576px) {
+      .hero h1 { font-size: 2.2rem; }
+      .hero p { font-size: 1.05rem; }
+      .section-title h2 { font-size: 1.9rem; }
+      .navbar-brand { font-size: 1.5rem; }
+      .category-card, .feature-card { padding: 1.8rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> FoodieExpress</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="menu.html">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="offers.html">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="about-us.html">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 my-2 my-lg-0">
+            <!-- Check if user is logged in to show appropriate button -->
+            <?php session_start(); if(isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true): ?>
+                
+            <?php else: ?>
+                <a class="btn btn-primary" href="login.html">Login <i class="fas fa-sign-in-alt ms-2"></i></a>
+            <?php endif; ?>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1 data-aos="fade-up" data-aos-delay="100">Authentic Indian Cuisine Delivered to Your Door</h1>
+      <p data-aos="fade-up" data-aos-delay="200">Experience the rich flavors of India with fresh, hygienic meals prepared by top chefs and delivered in 30 minutes or less</p>
+      <div class="search-container" data-aos="fade-up" data-aos-delay="300">
+        <form action="search.php" method="GET" class="d-flex">
+          <input type="text" class="form-control me-2 search-input" name="query" placeholder="What are you craving today? Biryani, Dosa, Paneer..." required>
+          <button class="btn btn-primary search-btn" type="submit">
+            Search Food <i class="fas fa-search ms-2"></i>
+          </button>
+        </form>
+      </div>
+      <div class="location-tag" data-aos="fade-up" data-aos-delay="400">
+        <i class="fas fa-map-marker-alt"></i>
+        <span>Delivering to: Mumbai, India</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Section -->
+  <section class="categories">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Popular Indian Cuisines</h2>
+        <p class="text-light-alt">Explore our diverse range of authentic Indian dishes</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-bread-slice"></i>
+            </div>
+            <h3>North Indian</h3>
+            <p>Tandoori, Curries, Breads</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-mortar-pestle"></i>
+            </div>
+            <h3>South Indian</h3>
+            <p>Dosa, Idli, Vada, Uttapam</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-drumstick-bite"></i>
+            </div>
+            <h3>Mughlai</h3>
+            <p>Biryani, Kebabs, Curries</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-6 mb-4" data-aos="fade-up" data-aos-delay="400">
+          <div class="category-card">
+            <div class="category-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Vegetarian</h3>
+            <p>Paneer, Dal, Veg Curries</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menu Section -->
+  <section class="menu">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Chef's Specials</h2>
+        <p class="text-light-alt">Discover our most popular Indian dishes</p>
+      </div>
+      
+      <div class="menu-grid">
+        <!-- Food Card 1 -->
+        <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="food-img">
+            <img src="img/butter_chicken.jpeg" alt="Butter Chicken">
+            <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+          </div>
+          <div class="food-details">
+            <h5>Butter Chicken</h5>
+            <p>Tender chicken in rich tomato and butter gravy, served with naan</p>
+            <div class="price-tag">₹299</div>
+            <div class="food-meta">
+              <div class="rating">
+                <i class="fas fa-star"></i> 4.8 (120)
+              </div>
+             
+              <button class="btn btn-sm btn-primary add-to-cart-btn"
+                      data-product-id="1"
+                      data-product-name="Butter Chicken"
+                      data-product-price="299"
+                      data-product-image="img/butter_chicken.jpeg">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Food Card 2 -->
+        <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="food-img">
+            <img src="img/paneer.jpeg" alt="Paneer Tikka Masala">
+            <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+          </div>
+          <div class="food-details">
+            <h5>Paneer Tikka Masala</h5>
+            <p>Cottage cheese cubes in creamy tomato gravy with spices</p>
+            <div class="price-tag">₹199</div>
+            <div class="food-meta">
+              <div class="rating">
+                <i class="fas fa-star"></i> 4.7 (95)
+              </div>
+              <!-- Added data attributes for product information -->
+              <button class="btn btn-sm btn-primary add-to-cart-btn"
+                      data-product-id="2"
+                      data-product-name="Paneer Tikka Masala"
+                      data-product-price="199"
+                      data-product-image="img/paneer.jpeg">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Food Card 3 -->
+        <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="food-img">
+            <img src="img/hyderabadi.jpg" alt="Hyderabadi Biryani">
+            <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+          </div>
+          <div class="food-details">
+            <h5>Hyderabadi Biryani</h5>
+            <p>Fragrant basmati rice with marinated chicken and spices</p>
+            <div class="price-tag">₹349</div>
+            <div class="food-meta">
+              <div class="rating">
+                <i class="fas fa-star"></i> 4.9 (210)
+              </div>
+              <!-- Added data attributes for product information -->
+              <button class="btn btn-sm btn-primary add-to-cart-btn"
+                      data-product-id="3"
+                      data-product-name="Hyderabadi Biryani"
+                      data-product-price="349"
+                      data-product-image="img/hyderabadi.jpg">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Food Card 4 -->
+        <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="food-img">
+            <img src="img/dosa.jpeg" alt="Masala Dosa">
+            <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+          </div>
+          <div class="food-details">
+            <h5>Masala Dosa</h5>
+            <p>Crispy rice crepe filled with spiced potato, served with sambar</p>
+            <div class="price-tag">₹149</div>
+            <div class="food-meta">
+              <div class="rating">
+                <i class="fas fa-star"></i> 4.6 (87)
+              </div>
+              <!-- Added data attributes for product information -->
+              <button class="btn btn-sm btn-primary add-to-cart-btn"
+                      data-product-id="4"
+                      data-product-name="Masala Dosa"
+                      data-product-price="149"
+                      data-product-image="img/dosa.jpeg">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-5" data-aos="fade-up">
+        <a href="#" class="btn btn-primary">View Full Menu <i class="fas fa-book-open ms-2"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Why FoodieExpress?</h2>
+        <p class="text-light-alt">Experience the difference with our premium service</p>
+      </div>
+      
+      <div class="row">
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h3>30-Minute Delivery</h3>
+            <p>Get your food piping hot in 30 minutes or get it free. Our riders are equipped with thermal bags.</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3>Fresh Ingredients</h3>
+            <p>We source only the freshest ingredients daily from local markets. 100% hygienic preparation.</p>
+          </div>
+        </div>
+        
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-card">
+            <div class="feature-icon">
+              <i class="fas fa-rupee-sign"></i>
+            </div>
+            <h3>Best Price Guarantee</h3>
+            <p>Find a lower price elsewhere? We'll match it and give you 20% off your next order.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Download App Section -->
+  <section class="download-app">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 mb-5 mb-lg-0" data-aos="fade-right">
+          <div class="text-center">
+            <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Mobile App" class="img-fluid rounded-3 shadow-lg" style="max-height: 500px;">
+          </div>
+        </div>
+        <div class="col-lg-6" data-aos="fade-left">
+          <div class="app-content">
+            <h2 class="mb-4" style="background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 800;">Get the FoodieExpress App</h2>
+            <p class="lead mb-4">Download our app for exclusive deals, faster ordering, and personalized recommendations. Order food anytime, anywhere!</p>
+            
+            <div class="app-buttons">
+              <div class="app-btn">
+                <i class="fab fa-apple"></i>
+                <div class="app-btn-text">
+                  <p>Download on the</p>
+                  <h5>App Store</h5>
+                </div>
+              </div>
+              
+              <div class="app-btn">
+                <i class="fab fa-google-play"></i>
+                <div class="app-btn-text">
+                  <p>Get it on</p>
+                  <h5>Google Play</h5>
+                </div>
+              </div>
+            </div>
+            
+            <div class="payment-methods mt-4">
+              <h5 class="mb-3">We Accept:</h5>
+              <div class="d-flex gap-3">
+                <div class="payment-method"><i class="fab fa-cc-visa"></i></div>
+                <div class="payment-method"><i class="fab fa-cc-mastercard"></i></div>
+                <div class="payment-method"><i class="fab fa-cc-paypal"></i></div>
+                <div class="payment-method"><i class="fab fa-cc-amazon-pay"></i></div>
+                <div class="payment-method"><i class="fas fa-rupee-sign"></i></div>
+                <div class="payment-method">UPI</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h3 class="navbar-brand mb-3"><i class="fas fa-utensils"></i> FoodieExpress</h3>
+          <p class="mb-4 text-light-alt">Delivering authentic Indian cuisine to your doorstep since 2018. Quality, taste, and convenience guaranteed.</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+          <h5 class="footer-title">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Menu</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+          <h5 class="footer-title">Categories</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> North Indian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> South Indian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Mughlai</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Vegetarian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Desserts</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-4">
+          <h5 class="footer-title">Contact Us</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Food Street, Mumbai, India</a></li>
+            <li><a href="#"><i class="fas fa-phone"></i> +91 70457 14602</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> info@foodieexpress.in</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> 10:00 AM - 11:00 PM, 365 days</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 FoodieExpress. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--primary);"></i> in India</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Cart -->
+  <div class="cart-floating">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-badge">0</div> <!-- Initial cart count should be 0 or fetched from session -->
+  </div>
+
+  <!-- Custom Message Box HTML -->
+  <div id="customMessageBox" class="custom-message-box">
+    <span id="messageText"></span>
+    <button class="close-btn" onclick="hideMessageBox()">&times;</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+  
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+
+    
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '0.5rem 2rem';
+        navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.7)';
+      } else {
+        navbar.style.padding = '0.8rem 2rem';
+        navbar.style.boxShadow = '0 8px 25px rgba(0,0,0,0.6)';
+      }
+    });
+
+
+    function showMessageBox(message, isError = false) {
+      const messageBox = document.getElementById('customMessageBox');
+      const messageText = document.getElementById('messageText');
+      messageText.textContent = message;
+
+      if (isError) {
+        messageBox.style.backgroundColor = '#dc3545'; 
+      } else {
+        messageBox.style.backgroundColor = 'var(--primary)';
+      }
+
+      messageBox.classList.add('show');
+      setTimeout(() => {
+        hideMessageBox();
+      }, 3000); 
+    }
+
+   
+    function hideMessageBox() {
+      const messageBox = document.getElementById('customMessageBox');
+      messageBox.classList.remove('show');
+    }
+
+   
+    function updateCartBadge(count) {
+        const badge = document.querySelector('.cart-badge');
+        badge.textContent = count;
+      
+        const cartIcon = document.querySelector('.cart-floating');
+        cartIcon.style.animation = 'pulse 0.5s';
+        setTimeout(() => {
+          cartIcon.style.animation = '';
+        }, 500);
+    }
+
+    const cartButtons = document.querySelectorAll('.add-to-cart-btn');
+    cartButtons.forEach(button => {
+      button.addEventListener('click', async function() {
+        const button = this;
+        const originalText = button.innerHTML;
+        
+        
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+
+        const productId = button.dataset.productId;
+        const productName = button.dataset.productName;
+        const productPrice = button.dataset.productPrice;
+        const productImage = button.dataset.productImage;
+
+        const formData = new FormData();
+        formData.append('product_id', productId);
+        formData.append('product_name', productName);
+        formData.append('product_price', productPrice);
+        formData.append('product_image', productImage);
+        formData.append('quantity', 1);
+
+        try {
+          const response = await fetch('php/add_to_cart.php', {
+            method: 'POST',
+            body: formData
+          });
+          
+          const result = await response.json();
+
+          if (result.success) {
+            updateCartBadge(result.cart_count);
+            button.innerHTML = '<i class="fas fa-check"></i> Added';
+            showMessageBox("Item added to cart successfully!");
+            setTimeout(() => {
+              button.innerHTML = originalText;
+              button.disabled = false;
+            }, 2000);
+          } else {
+            button.innerHTML = originalText;
+            button.disabled = false;
+            if (result.message.includes("not logged in")) {
+              showMessageBox("Please log in to add items to your cart.", true);
+              setTimeout(() => {
+                window.location.href = 'login.html';
+              }, 1500); 
+            } else {
+              showMessageBox("Error: " + result.message, true);
+            }
+          }
+        } catch (error) {
+          button.innerHTML = originalText;
+          button.disabled = false;
+          showMessageBox("An unexpected error occurred. Please try again.", true);
+          console.error("Fetch error:", error); 
+        }
+      });
+    });
+    
+    document.querySelector('.cart-floating').addEventListener('click', function() {
+        window.location.href = 'cart.php';
+    });
+
+    async function fetchCartCount() {
+        try {
+            const response = await fetch('php/get_cart_count.php'); 
+            const result = await response.json();
+            if (result.success) {
+                updateCartBadge(result.cart_count);
+            } else {
+                console.error('Error fetching cart count:', result.message);
+                updateCartBadge(0); }
+        } catch (error) {
+            console.error('Network error fetching cart count:', error);
+            updateCartBadge(0);  }
+    }
+
+    window.addEventListener('load', fetchCartCount);
+  </script>
+</body>
+</html>

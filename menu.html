@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu | FoodieExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #ff6b35;
+            --primary-dark: #e05a2b;
+            --accent: #ffd166;
+            --accent-dark: #ffc044;
+            --saffron: #FF9933;
+            --green: #138808;
+            --dark: #1a1a1a;
+            --darker: #111;
+            --light: #f8f9fa;
+            --light-alt: #e9ecef;
+            --glass: rgba(255, 255, 255, 0.08);
+            --blur: blur(15px);
+            --radius: 16px;
+            --gradient: linear-gradient(135deg, var(--primary), #ffb347);
+            --gradient-alt: linear-gradient(135deg, var(--accent), #ffb347);
+            --shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Outfit', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            background-image: radial-gradient(circle at 10% 20%, rgba(26, 26, 26, 0.8) 0%, rgba(17, 17, 17, 1) 90%);
+        }
+
+        section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: var(--gradient-alt);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+            position: relative;
+        }
+
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -10px;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gradient);
+            border-radius: 10px;
+            border: 2px solid var(--dark);
+        }
+
+        /* Navbar */
+        .navbar {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: var(--blur);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.6);
+            padding: 0.8rem 2rem;
+            transition: var(--transition);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand i {
+            margin-right: 8px;
+        }
+
+        .navbar-brand:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: var(--light) !important;
+            font-weight: 500;
+            margin: 0 0.8rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 0.5rem 1rem !important;
+            font-size: 1.05rem;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .nav-link:hover {
+            color: var(--accent) !important;
+        }
+
+        .btn-primary {
+            background: var(--gradient);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            padding: 0.7rem 2rem;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn-primary:hover:before {
+            width: 100%;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Hero Section */
+        .hero-menu {
+            height: 60vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4)),
+                url('https://images.unsplash.com/photo-1513104890138-7c749659a591?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            padding-top: 70px;
+        }
+
+        .hero-menu::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, transparent 20%, var(--darker) 150%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 2rem;
+        }
+
+        .hero-menu h1 {
+            font-size: 4.2rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffd166, #ff9933);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: float 5s ease-in-out infinite;
+            line-height: 1.2;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-menu p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--light-alt);
+            font-weight: 300;
+        }
+
+        .menu-nav {
+            position: sticky;
+            top: 80px;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: var(--blur);
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .menu-nav-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .menu-nav-link {
+            color: var(--light-alt);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .menu-nav-link:hover, 
+        .menu-nav-link.active {
+            color: var(--light);
+            background: var(--gradient);
+        }
+
+        /* Menu Section */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .food-card {
+            background: var(--glass);
+            border-radius: var(--radius);
+            overflow: hidden;
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            backdrop-filter: var(--blur);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .food-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .food-img {
+            width: 100%;
+            height: 220px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .food-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .food-card:hover .food-img img {
+            transform: scale(1.1);
+        }
+
+        .veg-nonveg {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            font-size: 0.8rem;
+            z-index: 2;
+        }
+
+        .veg {
+            color: var(--green);
+        }
+
+        .nonveg {
+            color: var(--primary);
+        }
+
+        .food-details {
+            padding: 1.8rem;
+        }
+
+        .food-details h5 {
+            font-weight: 700;
+            font-size: 1.35rem;
+            margin-bottom: 0.6rem;
+        }
+
+        .food-details p {
+            color: var(--light-alt);
+            margin-bottom: 1.2rem;
+            font-size: 0.95rem;
+            min-height: 60px;
+        }
+
+        .price-tag {
+            background: var(--gradient);
+            padding: 0.5rem 1.4rem;
+            border-radius: 50px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 1.2rem;
+            color: white;
+            font-size: 1.15rem;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .food-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .rating {
+            color: var(--accent);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.92);
+            padding: 4rem 0 2rem;
+            backdrop-filter: var(--blur);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-title {
+            font-weight: 700;
+            font-size: 1.3rem;
+            margin-bottom: 1.8rem;
+            color: var(--accent);
+            position: relative;
+            padding-bottom: 0.8rem;
+        }
+
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gradient);
+            border-radius: 3px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.9rem;
+        }
+
+        .footer-links a {
+            color: var(--light-alt);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a i {
+            width: 25px;
+            text-align: center;
+            color: var(--accent);
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.2rem;
+            margin-top: 1.8rem;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--glass);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .social-icon:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2.5rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--light-alt);
+            font-size: 0.95rem;
+        }
+
+        /* Floating Cart */
+        .cart-floating {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--gradient);
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            color: #fff;
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 1000;
+            font-size: 1.5rem;
+            animation: pulse 2s infinite;
+        }
+
+        .cart-floating:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 20px 50px rgba(255, 107, 53, 0.6);
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: var(--light);
+            color: var(--primary);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Custom Message Box Styles */
+        .custom-message-box {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1050;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .custom-message-box.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .custom-message-box .close-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .hero-menu h1 {
+                font-size: 3.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-menu h1 {
+                font-size: 3.2rem;
+            }
+            section {
+                padding: 4rem 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-menu h1 {
+                font-size: 2.7rem;
+            }
+            .hero-menu p {
+                font-size: 1.2rem;
+            }
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            .navbar {
+                padding: 0.7rem 1.5rem;
+            }
+            .menu-nav-container {
+                gap: 0.5rem;
+            }
+            .menu-nav-link {
+                font-size: 0.9rem;
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-menu h1 {
+                font-size: 2.2rem;
+            }
+            .hero-menu p {
+                font-size: 1.05rem;
+            }
+            .section-title h2 {
+                font-size: 1.9rem;
+            }
+            .navbar-brand {
+                font-size: 1.5rem;
+            }
+            .menu-nav-link {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> FoodieExpress</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="menu.html">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">Offers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about-us.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 my-2 my-lg-0">
+                        <a class="btn btn-primary" href="#">Login <i class="fas fa-sign-in-alt ms-2"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-menu">
+        <div class="hero-content">
+            <h1 data-aos="fade-up" data-aos-delay="100">Explore Our Menu</h1>
+            <p data-aos="fade-up" data-aos-delay="200" class="lead">Discover authentic flavors crafted with passion</p>
+        </div>
+    </section>
+
+    <!-- Menu Navigation -->
+    <div class="menu-nav">
+        <div class="container menu-nav-container">
+            <a href="#soups" class="menu-nav-link">Soups</a>
+            <a href="#main-course" class="menu-nav-link">Main Course</a>
+            <a href="#desserts" class="menu-nav-link">Desserts</a>
+            <a href="#extras" class="menu-nav-link">Extras</a>
+        </div>
+    </div>
+
+    <!-- Menu Sections -->
+    <section id="soups" class="menu">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Soups</h2>
+                <p class="text-light-alt">Discover our most popular Soups</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Food Card 1 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="food-img">
+                        <img src="img/Classic Tomato Basil Soup.jpg" alt="Classic Tomato Basil Soup">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Classic Tomato Basil Soup</h5>
+                        <p>Rich, velvety tomato soup simmered with fresh basil and a hint of cream.</p>
+                        <div class="price-tag">₹249</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.2 (120)
+                            </div>
+
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="5"
+                                data-product-name="Classic Tomato Basil Soup" data-product-price="249"
+                                data-product-image="img/Classic Tomato Basil Soup.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 2 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="food-img">
+                        <img src="img/chicken sweet corn soup.jpg" alt="chicken sweet corn soup">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Chicken Sweet Corn Soup</h5>
+                        <p> Light and comforting soup made with tender chicken pieces, sweet corn kernels, and a hint of soy — thickened just right.</p>
+                        <div class="price-tag">₹299</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.7 (95)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="6"
+                                data-product-name="chicken sweet corn soup" data-product-price="299"
+                                data-product-image="img/chicken sweet corn soup.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 3 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="food-img">
+                        <img src="img/Cream of Mushroom Soup.jpg" alt="Cream of Mushroom Soup">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Cream of Mushroom Soup</h5>
+                        <p>Smooth, creamy soup made from fresh mushrooms, herbs, and a splash of cream.</p>
+                        <div class="price-tag">₹149</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.9 (210)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="7"
+                                data-product-name="Cream of Mushroom Soup" data-product-price="149"
+                                data-product-image="img/Cream of Mushroom Soup.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 4 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="food-img">
+                        <img src="img/munchow soup.jpg" alt="munchow soup">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Munchow Soup</h5>
+                        <p>A spicy and tangy Indo-Chinese classic with mushrooms, veggies (or chicken), tofu, and flavorful spices.</p>
+                        <div class="price-tag">₹149</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.6 (87)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="8"
+                                data-product-name="munchow soup" data-product-price="149"
+                                data-product-image="img/munchow soup.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="main-course" class="menu">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Main Course</h2>
+                <p class="text-light-alt">Discover our most popular Indian dishes</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Food Card 1 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="food-img">
+                        <img src="img/sizzling Paneer Cottage Masala.jpg" alt="sizzling Paneer Cottage Masala">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Sizzling Paneer Cottage Masala</h5>
+                        <p>A house favorite for vegetarians — bold, flavorful, and always satisfying!</p>
+                        <div class="price-tag">₹449</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.8 (120)
+                            </div>
+
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="9"
+                                data-product-name="sizzling Paneer Cottage Masala" data-product-price="449"
+                                data-product-image="img/sizzling Paneer Cottage Masala.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 2 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="food-img">
+                        <img src="img/Mughlai butter chicken.jpg" alt="Mughlai butter chicken">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Mughlai Butter Chicken</h5>
+                        <p>Garlic naan or butter roti for the ultimate bite.</p>
+                        <div class="price-tag">₹349</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.7 (95)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="10"
+                                data-product-name="Mughlai butter chicken" data-product-price="349"
+                                data-product-image="img/Mughlai butter chicken.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 3 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="food-img">
+                        <img src="img/Smoky Paneer Tikka Masala.jpg" alt="Smoky Paneer Tikka Masala">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Smoky Paneer Tikka Masala</h5>
+                        <p>Soft, marinated paneer cubes char-grilled in a traditional tandoor.</p>
+                        <div class="price-tag">₹379</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.9 (210)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="11"
+                                data-product-name="Smoky Paneer Tikka Masala" data-product-price="379"
+                                data-product-image="img/Smoky Paneer Tikka Masala.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 4 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="food-img">
+                        <img src="img/Nawabi Veg Biryani Pot.jpg" alt="Nawabi Veg Biryani Pot">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Nawabi Veg Biryani Pot</h5>
+                        <p>Fragrant basmati rice layered with spiced seasonal vegetables, caramelized onions, and aromatic Nawabi spices</p>
+                        <div class="price-tag">₹269</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.6 (87)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="12"
+                                data-product-name="Nawabi Veg Biryani Pot" data-product-price="269"
+                                data-product-image="img/Nawabi Veg Biryani Pot.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section id="desserts" class="menu">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Desserts</h2>
+                <p class="text-light-alt">Sweet endings to your meal</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Food Card 1 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="food-img">
+                        <img src="img/Brownie Sundae Cup.jpg" alt="Brownie Sundae Cup">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Brownie Sundae Cup</h5>
+                        <p>A chocolate lover’s dream — indulgent, kid-friendly, and always a bestseller for sweet cravings!</p>
+                        <div class="price-tag">₹179</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.8 (120)
+                            </div>
+
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="13"
+                                data-product-name="Brownie Sundae Cup" data-product-price="179"
+                                data-product-image="img/Brownie Sundae Cup.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 2 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="food-img">
+                        <img src="img/Classic Cheesecake Slice.jpg" alt="Classic Cheesecake Slice">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Classic Cheesecake Slice</h5>
+                        <p>International, indulgent, and always Insta-worthy!</p>
+                        <div class="price-tag">₹169</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.7 (95)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="14"
+                                data-product-name="Classic Cheesecake Slice" data-product-price="169"
+                                data-product-image="img/Classic Cheesecake Slice.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 3 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="food-img">
+                        <img src="img/Chocolate Lava Cake.jpg" alt="Chocolate Lava Cake">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Chocolate Lava Cake</h5>
+                        <p>Warm, rich chocolate cake with a gooey molten center — served with a drizzle of chocolate sauce or a scoop of vanilla ice cream.</p>
+                        <div class="price-tag">₹219</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.9 (210)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="15"
+                                data-product-name="Chocolate Lava Cake" data-product-price="219"
+                                data-product-image="img/Chocolate Lava Cake.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 4 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="food-img">
+                        <img src="img/Royal Rasmalai.jpg" alt="Royal Rasmalai">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Royal Rasmalai</h5>
+                        <p>Light, refreshing, and a premium choice that feels festive every time.</p>
+                        <div class="price-tag">₹149</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.6 (87)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="16" data-product-name="Royal Rasmalai"
+                                data-product-price="149" data-product-image="img/Royal Rasmalai.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="extras" class="menu">
+        <div class="container">
+            <div class="section-title" data-aos="fade-up">
+                <h2>Extras</h2>
+                <p class="text-light-alt">Perfect additions to complete your meal</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Food Card 1 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="food-img">
+                        <img src="img/Chicken Nuggets.jpg" alt="Chicken Nuggets">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Chicken Nuggets</h5>
+                        <p> Juicy, bite-sized nuggets with a crunchy coating — served with tangy sauce.</p>
+                        <div class="price-tag">₹189</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.8 (120)
+                            </div>
+
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="17"
+                                data-product-name="Chicken Nuggets" data-product-price="189"
+                                data-product-image="img/Chicken Nuggets.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 2 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="food-img">
+                        <img src="img/Garlic Breadsticks.jpg" alt="Garlic Breadsticksa">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Garlic Breadsticks</h5>
+                        <p>Soft, buttery breadsticks brushed with garlic and herbs — served warm.</p>
+                        <div class="price-tag">₹199</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.7 (95)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="18"
+                                data-product-name="Garlic Breadsticks" data-product-price="199"
+                                data-product-image="img/Garlic Breadsticks.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 3 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="food-img">
+                        <img src="img/Green Salad Bowl.jpg" alt="Green Salad Bowl">
+                        <div class="veg-nonveg nonveg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Green Salad Bowl</h5>
+                        <p>Fresh seasonal veggies — lettuce, cucumber, tomato, carrots — with a light dressing.</p>
+                        <div class="price-tag">₹149</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.9 (210)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="19"
+                                data-product-name="Green Salad Bowl" data-product-price="149"
+                                data-product-image="img/Green Salad Bowl.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Food Card 4 -->
+                <div class="food-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="food-img">
+                        <img src="img/Steamed Veg Momos.jpg" alt="Steamed Veg Momos">
+                        <div class="veg-nonveg veg"><i class="fas fa-circle"></i></div>
+                    </div>
+                    <div class="food-details">
+                        <h5>Steamed Veg Momos</h5>
+                        <p>Delicate steamed dumplings filled with fresh vegetables and flavorful spices.</p>
+                        <div class="price-tag">₹179</div>
+                        <div class="food-meta">
+                            <div class="rating">
+                                <i class="fas fa-star"></i> 4.6 (87)
+                            </div>
+                            <button class="btn btn-sm btn-primary add-to-cart-btn" data-product-id="20" data-product-name="Steamed Veg Momos"
+                                data-product-price="179" data-product-image="img/Steamed Veg Momos.jpg">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h3 class="navbar-brand mb-3"><i class="fas fa-utensils"></i> FoodieExpress</h3>
+                    <p class="mb-4 text-light-alt">Delivering authentic Indian cuisine to your doorstep since 2018. Quality, taste, and convenience guaranteed.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-title">Quick Links</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Menu</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="footer-title">Categories</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Soups</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Main Course</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Desserts</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Extras</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Beverages</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4">
+                    <h5 class="footer-title">Contact Us</h5>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Food Street, Mumbai, India</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +91 70457 14602</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> info@foodieexpress.in</a></li>
+                        <li><a href="#"><i class="fas fa-clock"></i> 10:00 AM - 11:00 PM, 365 days</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2025 FoodieExpress. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--primary);"></i> in India</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Cart -->
+    <div class="cart-floating">
+        <i class="fas fa-shopping-cart"></i>
+        <div class="cart-badge">3</div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        // Initialize animations
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.padding = '0.5rem 2rem';
+                navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.7)';
+            } else {
+                navbar.style.padding = '0.8rem 2rem';
+                navbar.style.boxShadow = '0 8px 25px rgba(0,0,0,0.6)';
+            }
+        });
+
+        // Menu navigation highlighting
+        document.querySelectorAll('.menu-nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Scroll to target
+                targetElement.scrollIntoView({ behavior: 'smooth' });
+                
+                // Update active link
+                document.querySelectorAll('.menu-nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Add to cart functionality
+     // Add to cart functionality
+document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const button = this;
+        const originalText = button.innerHTML;
+        
+        // Show loading state
+        button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+
+        const productId = button.dataset.productId;
+        const productName = button.dataset.productName;
+        const productPrice = button.dataset.productPrice;
+        const productImage = button.dataset.productImage;
+        
+        // Make AJAX call to add to cart
+        fetch('add_to_cart.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                product_id: productId,
+                product_name: productName,
+                product_price: productPrice,
+                product_image: productImage,
+                quantity: 1
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if(data.success) {
+                // Update cart badge
+                const badge = document.querySelector('.cart-badge');
+                let count = parseInt(badge.textContent) || 0;
+                badge.textContent = count + 1;
+                
+                // Show success message
+                showMessage(`${productName} added to cart!`);
+            } else {
+                showMessage(data.message || 'Failed to add to cart');
+            }
+        })
+        .catch(error => {
+            showMessage('Error adding to cart');
+            console.error('Error:', error);
+        })
+        .finally(() => {
+            // Reset button
+            button.innerHTML = originalText;
+            button.disabled = false;
+        });
+    });
+});
+        
+        // Floating cart click
+        document.querySelector('.cart-floating').addEventListener('click', function() {
+            window.location.href = 'cart.php';
+        });
+
+        // Message functions
+        function showMessage(text) {
+            const messageBox = document.createElement('div');
+            messageBox.className = 'custom-message-box show';
+            messageBox.innerHTML = `
+                <span>${text}</span>
+                <button class="close-btn">&times;</button>
+            `;
+            document.body.appendChild(messageBox);
+            
+            // Close button
+            messageBox.querySelector('.close-btn').addEventListener('click', function() {
+                messageBox.classList.remove('show');
+                setTimeout(() => {
+                    messageBox.remove();
+                }, 300);
+            });
+            
+            // Auto-close
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+                setTimeout(() => {
+                    messageBox.remove();
+                }, 300);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

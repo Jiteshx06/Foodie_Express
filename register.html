@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FoodieExpress - Register</title>
+  
+  <!-- Same dependencies -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #ff5722;
+      --accent: #ff9e80;
+      --dark: #121212;
+      --light: #fefefe;
+      --glass: rgba(255, 255, 255, 0.1);
+      --blur: blur(20px);
+      --radius: 20px;
+      --gradient: linear-gradient(135deg, #ff6f61, #ff5722);
+    }
+
+    /* Essential Auth Styles */
+    .auth-hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.3)),
+                  url('https://images.unsplash.com/photo-1547592180-85f173990554') center/cover fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .auth-card {
+      background: var(--glass);
+      backdrop-filter: var(--blur);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      width: 100%;
+      max-width: 450px;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    }
+
+    .auth-title {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-weight: 800;
+      margin-bottom: 2rem;
+    }
+
+    .auth-form .form-control {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid #333;
+      color: var(--light);
+      padding: 1rem;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .auth-form .form-control:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 15px rgba(255,87,34,0.2);
+    }
+
+    .auth-alt-link {
+      color: var(--accent);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .auth-alt-link:hover {
+      color: var(--primary);
+      text-decoration: underline;
+    }
+
+    /* Additional Register-specific Styles */
+    .password-strength {
+      height: 4px;
+      background: #333;
+      margin-top: 8px;
+      border-radius: 2px;
+    }
+
+    .strength-meter {
+      width: 0;
+      height: 100%;
+      background: var(--gradient);
+      transition: width 0.3s ease;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">FoodieExpress</a>
+      <div class="collapse navbar-collapse justify-content-end">
+      </div>
+    </div>
+  </nav>
+
+  <!-- Registration Section -->
+  <section class="auth-hero">
+    <div class="auth-card" data-aos="zoom-in">
+      <h2 class="auth-title text-center mb-4">Create Account</h2>
+      
+      <form class="auth-form" method="post" action="register.php">
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="first_name" placeholder="First Name" required>
+    </div>
+    <div class="col-md-6">
+      <input type="text" class="form-control" name="last_name" placeholder="Last Name" required>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <input type="email" class="form-control" name="email" placeholder="Email Address" required>
+  </div>
+  
+  <div class="mb-4">
+    <input type="password" class="form-control" name="password" placeholder="Create Password" required>
+    <div class="password-strength">
+      <div class="strength-meter"></div>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm Password" required>
+  </div>
+
+  <button class="btn btn-warning w-100 mb-3" style="padding: 12px; font-weight: 600;">
+    Create Account
+  </button>
+
+  <div class="text-center mt-4">
+    <a href="login.html" class="auth-alt-link">
+      Already have an account? Sign In
+    </a>
+  </div>
+</form>
+
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
+    
+   
+    document.querySelector('input[type="password"]').addEventListener('input', function(e) {
+      const strength = Math.min(e.target.value.length / 12 * 100, 100)
+      document.querySelector('.strength-meter').style.width = strength + '%'
+    })
+  </script>
+</body>
+</html>

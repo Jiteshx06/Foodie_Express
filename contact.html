@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | FoodieExpress</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff6b35;
+      --primary-dark: #e05a2b;
+      --accent: #ffd166;
+      --accent-dark: #ffc044;
+      --saffron: #FF9933;
+      --green: #138808;
+      --dark: #1a1a1a;
+      --darker: #111;
+      --light: #f8f9fa;
+      --light-alt: #e9ecef;
+      --glass: rgba(255, 255, 255, 0.08);
+      --blur: blur(15px);
+      --radius: 16px;
+      --gradient: linear-gradient(135deg, var(--primary), #ffb347);
+      --gradient-alt: linear-gradient(135deg, var(--accent), #ffb347);
+      --shadow: 0 12px 30px rgba(0,0,0,0.3);
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', 'Outfit', sans-serif;
+      background: var(--darker);
+      color: var(--light);
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      background-image: radial-gradient(circle at 10% 20%, rgba(26, 26, 26, 0.8) 0%, rgba(17, 17, 17, 1) 90%);
+    }
+
+    section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      position: relative;
+      margin-bottom: 4rem;
+      text-align: center;
+    }
+    
+    .section-title h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: var(--gradient-alt);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: inline-block;
+      position: relative;
+    }
+    
+    .section-title h2:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient);
+      transform: translateX(-50%);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--dark); }
+    ::-webkit-scrollbar-thumb {
+      background: var(--gradient);
+      border-radius: 10px;
+      border: 2px solid var(--dark);
+    }
+
+    /* Navbar */
+    .navbar {
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: var(--blur);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.6);
+      padding: 0.8rem 2rem;
+      transition: var(--transition);
+    }
+
+    .navbar-brand {
+      font-weight: 800;
+      font-size: 1.8rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+    }
+
+    .navbar-brand i {
+      margin-right: 8px;
+    }
+
+    .navbar-brand:hover {
+      transform: scale(1.05);
+    }
+
+    .nav-link {
+      color: var(--light) !important;
+      font-weight: 500;
+      margin: 0 0.8rem;
+      position: relative;
+      transition: var(--transition);
+      padding: 0.5rem 1rem !important;
+      font-size: 1.05rem;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      background: var(--primary);
+      transition: var(--transition);
+      transform: translateX(-50%);
+    }
+
+    .nav-link:hover::after {
+      width: 80%;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+    }
+
+    .btn-primary {
+      background: var(--gradient);
+      border: none;
+      border-radius: 50px;
+      font-weight: 600;
+      padding: 0.7rem 2rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .btn-primary:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 0;
+      height: 100%;
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      transition: var(--transition);
+      z-index: -1;
+    }
+
+    .btn-primary:hover:before {
+      width: 100%;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(255, 107, 53, 0.4);
+    }
+
+    /* Hero Section */
+    .hero-contact {
+      height: 60vh;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.4)),
+        url('https://images.unsplash.com/photo-1556911220-ef412aea183d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 70px;
+    }
+
+    .hero-contact::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, transparent 20%, var(--darker) 150%);
+      z-index: 0;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+      padding: 0 2rem;
+    }
+
+    .hero-contact h1 {
+      font-size: 4.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(135deg, #ffd166, #ff9933);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: float 5s ease-in-out infinite;
+      line-height: 1.2;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    /* Contact Section */
+    .contact-section {
+      background: linear-gradient(to bottom, var(--dark), var(--darker));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .contact-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 3rem;
+    }
+
+    .contact-info {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 3rem;
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .contact-info:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .contact-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: var(--accent);
+      position: relative;
+      padding-bottom: 1rem;
+    }
+
+    .contact-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+
+    .contact-details {
+      margin-bottom: 2rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1.2rem;
+      font-size: 1.3rem;
+      color: var(--accent);
+      flex-shrink: 0;
+      transition: var(--transition);
+    }
+
+    .contact-item:hover .contact-icon {
+      background: var(--gradient);
+      color: white;
+      transform: rotate(15deg);
+    }
+
+    .contact-text h4 {
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+      color: var(--light);
+    }
+
+    .contact-text p, .contact-text a {
+      color: var(--light-alt);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .contact-text a:hover {
+      color: var(--accent);
+    }
+
+    .social-contact {
+      display: flex;
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .social-contact .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-contact .social-icon:hover {
+      background: var(--gradient);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Contact Form */
+    .contact-form {
+      background: var(--glass);
+      border-radius: var(--radius);
+      padding: 3rem;
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.05);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .contact-form:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+
+    .form-group {
+      margin-bottom: 1.8rem;
+      position: relative;
+    }
+
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--light);
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 1rem 1.5rem;
+      background: rgba(40, 40, 40, 0.7);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 10px;
+      color: var(--light);
+      font-size: 1rem;
+      transition: var(--transition);
+    }
+
+    .form-control:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(255, 209, 102, 0.2);
+    }
+
+    textarea.form-control {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Map Section */
+    .map-section {
+      background: linear-gradient(to bottom, var(--darker), var(--dark));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-section::before {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,209,102,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .map-container {
+      position: relative;
+      z-index: 1;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      height: 500px;
+      border: 1px solid rgba(255,255,255,0.1);
+      transition: var(--transition);
+    }
+
+    .map-container:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .map-overlay {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      background: rgba(0,0,0,0.8);
+      padding: 1.5rem;
+      border-radius: var(--radius);
+      max-width: 300px;
+      backdrop-filter: var(--blur);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .map-overlay h4 {
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    .map-overlay p {
+      color: var(--light-alt);
+      margin-bottom: 0.5rem;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: linear-gradient(to bottom, var(--dark), var(--darker));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .faq-section::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255,107,53,0.15) 0%, transparent 70%);
+      z-index: 0;
+    }
+
+    .faq-container {
+      position: relative;
+      z-index: 1;
+    }
+
+    .accordion-item {
+      background: var(--glass);
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: var(--radius) !important;
+      margin-bottom: 1.5rem;
+      overflow: hidden;
+      backdrop-filter: var(--blur);
+    }
+
+    .accordion-button {
+      background: transparent;
+      color: var(--light);
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 1.5rem 2rem;
+      box-shadow: none;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: rgba(255,255,255,0.05);
+      color: var(--accent);
+    }
+
+    .accordion-button:focus {
+      box-shadow: none;
+    }
+
+    .accordion-button::after {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffd166'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+
+    .accordion-body {
+      padding: 1.5rem 2rem;
+      color: var(--light-alt);
+      background: rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    .footer {
+      background: rgba(0,0,0,0.92);
+      padding: 4rem 0 2rem;
+      backdrop-filter: var(--blur);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-title {
+      font-weight: 700;
+      font-size: 1.3rem;
+      margin-bottom: 1.8rem;
+      color: var(--accent);
+      position: relative;
+      padding-bottom: 0.8rem;
+    }
+
+    .footer-title:after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: var(--gradient);
+      border-radius: 3px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.9rem;
+    }
+
+    .footer-links a {
+      color: var(--light-alt);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a i {
+      width: 25px;
+      text-align: center;
+      color: var(--accent);
+    }
+
+    .footer-links a:hover {
+      color: var(--accent);
+      padding-left: 5px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 1.2rem;
+      margin-top: 1.8rem;
+    }
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--glass);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .social-icon:hover {
+      background: var(--gradient);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 2.5rem;
+      margin-top: 3rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--light-alt);
+      font-size: 0.95rem;
+    }
+
+    /* Floating Cart */
+    .cart-floating {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--gradient);
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+      color: #fff;
+      cursor: pointer;
+      transition: var(--transition);
+      z-index: 1000;
+      font-size: 1.5rem;
+      animation: pulse 2s infinite;
+    }
+
+    .cart-floating:hover {
+      transform: scale(1.1) rotate(10deg);
+      box-shadow: 0 20px 50px rgba(255, 107, 53, 0.6);
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: var(--light);
+      color: var(--primary);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    /* Custom Message Box */
+    .custom-message-box {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: var(--primary);
+      color: white;
+      padding: 15px 25px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .custom-message-box.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .custom-message-box .close-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(255, 209, 102, 0.5); }
+      100% { box-shadow: 0 0 20px rgba(255, 209, 102, 0.8); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .hero-contact h1 { font-size: 3.8rem; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-contact h1 { font-size: 3.2rem; }
+      section { padding: 4rem 0; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-contact h1 { font-size: 2.7rem; }
+      .section-title h2 { font-size: 2.2rem; }
+      .navbar { padding: 0.7rem 1.5rem; }
+      .contact-info, .contact-form { padding: 2rem; }
+    }
+
+    @media (max-width: 576px) {
+      .hero-contact h1 { font-size: 2.2rem; }
+      .section-title h2 { font-size: 1.9rem; }
+      .navbar-brand { font-size: 1.5rem; }
+      .map-overlay { max-width: 250px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> FoodieExpress</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Menu</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Offers</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Contact</a>
+          </li>
+          <li class="nav-item ms-lg-3 my-2 my-lg-0">
+            <a class="btn btn-primary" href="#">Login <i class="fas fa-sign-in-alt ms-2"></i></a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero-contact">
+    <div class="hero-content">
+      <h1 data-aos="fade-up" data-aos-delay="100">Get In Touch</h1>
+      <p data-aos="fade-up" data-aos-delay="200" class="lead">We'd love to hear from you! Reach out for questions, feedback, or assistance.</p>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Contact Us</h2>
+        <p class="text-light-alt">We're always ready to serve you better</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info" data-aos="fade-right" data-aos-delay="100">
+          <h3 class="contact-title">Contact Information</h3>
+          
+          <div class="contact-details">
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-map-marker-alt"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Our Location</h4>
+                <p>123 Food Street, Bandra West, Mumbai, Maharashtra 400050</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Phone Number</h4>
+                <p>+91 70457 14602</p>
+                <p>+91 80975 34210</p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Email Address</h4>
+                <p><a href="mailto:info@foodieexpress.in">info@foodieexpress.in</a></p>
+                <p><a href="mailto:support@foodieexpress.in">support@foodieexpress.in</a></p>
+              </div>
+            </div>
+            
+            <div class="contact-item">
+              <div class="contact-icon">
+                <i class="fas fa-clock"></i>
+              </div>
+              <div class="contact-text">
+                <h4>Opening Hours</h4>
+                <p>Monday-Saturday: 10:00 AM - 11:00 PM</p>
+                <p>Sunday: 11:00 AM - 10:00 PM</p>
+              </div>
+            </div>
+          </div>
+          
+          <h3 class="contact-title">Follow Us</h3>
+          <div class="social-contact">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+          </div>
+        </div>
+        
+        <div class="contact-form" data-aos="fade-left" data-aos-delay="200">
+          <h3 class="contact-title">Send Us a Message</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name" class="form-label">Full Name</label>
+              <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="email" class="form-label">Email Address</label>
+              <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="phone" class="form-label">Phone Number</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number">
+            </div>
+            
+            <div class="form-group">
+              <label for="subject" class="form-label">Subject</label>
+              <input type="text" class="form-control" id="subject" placeholder="What is this regarding?" required>
+            </div>
+            
+            <div class="form-group">
+              <label for="message" class="form-label">Your Message</label>
+              <textarea class="form-control" id="message" placeholder="Type your message here..." required></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100 py-3">Send Message <i class="fas fa-paper-plane ms-2"></i></button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map Section -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Find Our Restaurant</h2>
+        <p class="text-light-alt">Visit us for a delightful dining experience</p>
+      </div>
+
+      <div class="map-container" data-aos="zoom-in" data-aos-delay="100">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.9316591660933!2d72.8220148748218!3d19.06624395322892!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c931a0c8c3a1%3A0x3d1c4e2d0b7b0b1d!2sBandra%20West%2C%20Mumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1691859876543!5m2!1sen!2sin" allowfullscreen="" loading="lazy"></iframe>
+        <div class="map-overlay">
+          <h4>FoodieExpress Flagship</h4>
+          <p><i class="fas fa-map-marker-alt me-2"></i> 123 Food Street, Mumbai</p>
+          <p><i class="fas fa-phone me-2"></i> +91 70457 14602</p>
+          <p><i class="fas fa-clock me-2"></i> Open today: 10AM - 11PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-title" data-aos="fade-up">
+        <h2>Frequently Asked Questions</h2>
+        <p class="text-light-alt">Quick answers to common questions</p>
+      </div>
+
+      <div class="accordion" id="faqAccordion" data-aos="fade-up" data-aos-delay="100">
+        <!-- FAQ 1 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+              What are your delivery hours?
+            </button>
+          </h2>
+          <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              We deliver from 10:00 AM to 11:00 PM every day. On Sundays, our delivery hours are from 11:00 AM to 10:00 PM. Orders placed after these hours will be delivered the next day.
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 2 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+              How long does delivery take?
+            </button>
+          </h2>
+          <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Our standard delivery time is 30-45 minutes. We guarantee delivery within 60 minutes or your meal is free! Delivery times may vary slightly during peak hours or adverse weather conditions.
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 3 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingThree">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+              Do you offer catering for events?
+            </button>
+          </h2>
+          <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Yes, we offer full catering services for events ranging from 20 to 500 guests. We have special menus for corporate events, weddings, and private parties. Please contact us at least 72 hours in advance for catering inquiries.
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 4 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFour">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+              What payment methods do you accept?
+            </button>
+          </h2>
+          <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              We accept all major credit/debit cards (Visa, MasterCard, American Express), UPI payments, net banking, and digital wallets (Paytm, PhonePe, Google Pay). Cash on delivery is also available for orders under ₹2000.
+            </div>
+          </div>
+        </div>
+        
+        <!-- FAQ 5 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="headingFive">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive">
+              Do you have vegetarian and vegan options?
+            </button>
+          </h2>
+          <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">
+              Absolutely! We have an extensive vegetarian menu with over 60 dishes. We also offer a dedicated vegan menu with 25+ options. All vegan dishes are prepared separately to avoid cross-contamination. Look for the leaf and plant icons on our menu.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4 mb-5 mb-lg-0">
+          <h3 class="navbar-brand mb-3"><i class="fas fa-utensils"></i> FoodieExpress</h3>
+          <p class="mb-4 text-light-alt">Delivering authentic Indian cuisine to your doorstep since 2018. Quality, taste, and convenience guaranteed.</p>
+          <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+          <h5 class="footer-title">Quick Links</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Menu</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Contact</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> FAQs</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+          <h5 class="footer-title">Categories</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-chevron-right"></i> North Indian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> South Indian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Mughlai</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Vegetarian</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right"></i> Desserts</a></li>
+          </ul>
+        </div>
+        
+        <div class="col-lg-4 col-md-4">
+          <h5 class="footer-title">Contact Us</h5>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-map-marker-alt"></i> 123 Food Street, Mumbai, India</a></li>
+            <li><a href="#"><i class="fas fa-phone"></i> +91 70457 14602</a></li>
+            <li><a href="#"><i class="fas fa-envelope"></i> info@foodieexpress.in</a></li>
+            <li><a href="#"><i class="fas fa-clock"></i> 10:00 AM - 11:00 PM, 365 days</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="copyright">
+        <p>&copy; 2025 FoodieExpress. All rights reserved. | Made with <i class="fas fa-heart" style="color: var(--primary);"></i> in India</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Cart -->
+  <div class="cart-floating">
+    <i class="fas fa-shopping-cart"></i>
+    <div class="cart-badge">3</div>
+  </div>
+
+  <!-- Custom Message Box -->
+  <div id="customMessageBox" class="custom-message-box">
+    <span id="messageText"></span>
+    <button class="close-btn" onclick="hideMessageBox()">&times;</button>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    // Initialize animations
+    AOS.init({
+      duration: 1000,
+      once: true,
+      easing: 'ease-out-cubic'
+    });
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const navbar = document.querySelector('.navbar');
+      if (window.scrollY > 50) {
+        navbar.style.padding = '0.5rem 2rem';
+        navbar.style.boxShadow = '0 5px 20px rgba(0,0,0,0.7)';
+      } else {
+        navbar.style.padding = '0.8rem 2rem';
+        navbar.style.boxShadow = '0 8px 25px rgba(0,0,0,0.6)';
+      }
+    });
+
+    // Form submission handling
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // In a real application, you would send the form data to your server here
+        // For this demo, we'll just show a success message
+        
+        // Show success message
+        showMessage("Your message has been sent successfully! We'll get back to you soon.");
+        
+        // Reset the form
+        contactForm.reset();
+      });
+    }
+
+    // Message functions
+    function showMessage(text, isError = false) {
+      const messageBox = document.getElementById('customMessageBox');
+      const messageText = document.getElementById('messageText');
+      messageText.textContent = text;
+      
+      if (isError) {
+        messageBox.style.backgroundColor = '#dc3545';
+      } else {
+        messageBox.style.backgroundColor = 'var(--primary)';
+      }
+      
+      messageBox.classList.add('show');
+      setTimeout(() => {
+        hideMessageBox();
+      }, 5000);
+    }
+    
+    function hideMessageBox() {
+      const messageBox = document.getElementById('customMessageBox');
+      messageBox.classList.remove('show');
+    }
+
+    // Contact icon animations
+    const contactIcons = document.querySelectorAll('.contact-icon');
+    contactIcons.forEach(icon => {
+      icon.addEventListener('mouseenter', () => {
+        icon.style.transform = 'rotate(15deg)';
+        icon.style.background = 'var(--gradient)';
+        icon.style.color = 'white';
+      });
+      
+      icon.addEventListener('mouseleave', () => {
+        icon.style.transform = 'rotate(0)';
+        icon.style.background = 'rgba(255,255,255,0.1)';
+        icon.style.color = 'var(--accent)';
+      });
+    });
+  </script>
+</body>
+</html>
