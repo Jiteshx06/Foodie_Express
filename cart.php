@@ -4,7 +4,7 @@
 session_start(); 
 require_once 'config.php'; 
 if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    header("location: login.html"); 
+    header("location: https://express-delta-one.vercel.app/login.html"); 
      exit();
 }
 
@@ -145,7 +145,7 @@ try {
       <div class="empty-cart">
         <h3>Your cart is empty!</h3>
         <p>Go back and add some delicious items 🍕</p>
-        <a href="index.html" class="btn btn-primary mt-4">Back to Menu</a>
+        <a href="https://express-delta-one.vercel.app/index.html" class="btn btn-primary mt-4">Back to Menu</a>
       </div>
     <?php else: ?>
       <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -170,7 +170,7 @@ try {
       <div class="summary mt-5">
         <h4>Total Amount: ₹<?= htmlspecialchars(number_format($total, 2)) ?></h4>
         <div class="mt-4 d-flex justify-content-between">
-          <a href="index.html" class="btn btn-primary me-3">Back to Menu</a>
+          <a href="https://express-delta-one.vercel.app/index.html" class="btn btn-primary me-3">Back to Menu</a>
           <a href="https://docs.google.com/forms/d/1RGL-xo_6oHna2jnAoUp8qzo16O2DHq2rCiTWagd3bMs/viewform?pli=1&pli=1&edit_requested=true" class="btn btn-success">Proceed to Checkout</a>
         </div>
       </div>

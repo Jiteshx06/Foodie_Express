@@ -620,29 +620,29 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#"><i class="fas fa-utensils"></i> FoodieExpress</a>
+            <a class="navbar-brand" href="https://express-delta-one.vercel.app/index.html"><i class="fas fa-utensils"></i> FoodieExpress</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="https://express-delta-one.vercel.app/index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="menu.html">Menu</a>
+                        <a class="nav-link active" href="https://express-delta-one.vercel.app/menu.html">Menu</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="offers.html">Offers</a>
+                        <a class="nav-link" href="https://express-delta-one.vercel.app/offers.html">Offers</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about-us.html">About</a>
+                        <a class="nav-link" href="https://express-delta-one.vercel.app/about-us.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
+                        <a class="nav-link" href="https://express-delta-one.vercel.app/contact.html">Contact</a>
                     </li>
                     <li class="nav-item ms-lg-3 my-2 my-lg-0">
-                        <a class="btn btn-primary" href="#">Login <i class="fas fa-sign-in-alt ms-2"></i></a>
+                        <a class="btn btn-primary" href="https://express-delta-one.vercel.app/login.html">Login <i class="fas fa-sign-in-alt ms-2"></i></a>
                     </li>
                 </ul>
             </div>
@@ -1169,7 +1169,7 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         const productImage = button.dataset.productImage;
         
         // Make AJAX call to add to cart
-        fetch('add_to_cart.php', {
+        fetch('https://php-backend-foodie-express.onrender.com/add_to_cart.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -1210,7 +1210,7 @@ document.querySelectorAll('.add-to-cart-btn').forEach(button => {
         
         // Floating cart click
         document.querySelector('.cart-floating').addEventListener('click', function() {
-            window.location.href = 'cart.php';
+            window.location.href = 'https://php-backend-foodie-express.onrender.com/cart.php';
         });
 
         // Message functions
